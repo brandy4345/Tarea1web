@@ -66,3 +66,41 @@ let comunasObj = {
      }
 ]
 }
+
+const selectorRegion = document.getElementById("regiones");
+for (let i = 0;i<comunasObj.regiones.length;i++){
+    const opcion = document.createElement("option");
+    const region = comunasObj.regiones[i].region;
+    opcion.value = region;
+    opcion.innerText = region;
+
+    selectorRegion.append(opcion);
+}
+
+const selectorComuna = document.getElementById("comunas");
+const actualizaComunas = () => {
+    const a = selectorRegion.value;
+    
+    const b = comunasObj.regiones.find(({region}) => region === a);
+    if(b){
+        let comunas = b.comunas;
+        if (selectorComuna.innerHTML.trim()!=''){
+            const cantComunasBorrar = selectorComuna.children.length;
+            for(let j = 0; j<cantComunasBorrar; j++){
+                selectorComuna.lastChild.remove();
+            }
+        }
+        comunas.forEach(element => {
+            const opcion = document.createElement("option");
+            opcion.value = element;
+            opcion.innerText = element;
+            
+            selectorComuna.append(opcion);
+        });
+    }
+    else{
+        console.log("INTENTO !");
+    }
+}
+
+selectorRegion.addEventListener("change",actualizaComunas);

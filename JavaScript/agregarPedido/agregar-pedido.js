@@ -21,8 +21,8 @@ const producto_fruta = document.getElementById("checkbox-producto-fruta");
 const producto_verdura = document.getElementById("checkbox-producto-verdura");
 
 //------ Esconde los productos -------
-producto_fruta.style.display="none";
-producto_verdura.style.display="none";
+//producto_fruta.style.display="none";
+//producto_verdura.style.display="none";
 
 
 // ------- EVENTOS ----------
