@@ -4,3 +4,7 @@
 #checkbox-producto-verdura{
     display: none;
 }
+
+.error{
+    color: red;
+}

@@ -7,6 +7,7 @@
     </head>
     <body>
         <form autocomplete="off">
+            <p id="error-tipo" class ="error">Seleccione un tipo de producto:</p>
             <div id="Tipo-fruta-o-verdura">
                 <p>Tipo de producto:</p>
                 <input type="radio" id="fruta" name="Tipo-fruta-o-verdura" value="FRUTA">
@@ -14,6 +15,7 @@
                 <input type="radio" id="verdura" name="Tipo-fruta-o-verdura" value="VERDURA">
                 <label for="verdura">Verdura</label>                   
             </div>
+            <p id="error-checkbox-fruta" class ="error">Seleccione alguna fruta.</p>
             <div id="checkbox-producto-fruta">
                 <p>Tipos de frutas:</p>
                 <input type="checkbox" id="fruta_n1" name="fruta1" value="fruta">
@@ -91,6 +93,7 @@
                 <input type="checkbox" id="fruta_n37" name="fruta37" value="fruta">
                 <label for="fruta_n37"> Uva</label>
             </div>
+            <p id="error-checkbox-verdura" class ="error">Seleccione alguna verdura.</p>
             <div id="checkbox-producto-verdura">
                 <p>Tipos de verduras:</p>
                 <input type="checkbox" id="verdura_n1" name="verdura1" value="verdura">
@@ -144,33 +147,41 @@
                 <input type="checkbox" id="verdura_n25" name="verdura25" value="verdura">
                 <label for="verdura_n25">Zapallo</label>
             </div>
+            <p id="error-descripcion" class ="error">Ingrese una descripción del producto.</p>
             <div id="descripcion">
                 <p> Descripción de producto: </p>
                 <textarea id="desc-producto" name="" cols="50" rows="4"></textarea>
             </div>
+            <p id="error-foto" class ="error">No se ha seleccionado ninguna foto</p>
             <div id="foto-del-producto">
                 <input type="file" multiple>
             </div>
+            <p id="error-region" class ="error">Seleccione su region.</p>
             <div id="region">
                 <select id="regiones">
                 </select>
             </div>
+            <p id="error-comuna" class ="error">Seleccione su comuna.</p>
             <div id="comuna">
                 <select id ="comunas">  </select>
             </div>
+            <p id="error-nombre" class ="error">Ingrese su nombre.</p>
             <div id="nombre-productor">
                 <label for="nombre" > Nombre: </label>
-                <input type="text" id="nombre" name="NOMBRE">
+                <input type="text" id="nombre" name="NOMBRE" size="80">
             </div>
             </div>
+            <p id="error-email" class ="error">Ingrese su dirección de correo electrónico.</p>
             <div id="email-productor">
-                <label for="email"> Escriba su email: </label>
-                <input type="text" id="email" name="EMAIL">
+                <label for="user-email"> Escriba su email: </label>
+                <input type="email" id="user-email" name="user-email" size="30" placeholder="alguien@ejemplo.com">
             </div>
-            <div id="numerotlf-productor">
+            <p id="error-telefono" class ="error">Ingrese su teléfono.</p>
+            <div id="telefono-productor">
                 <label for="telefono"> Numero de telefono: </label>
-                <input type="text" id="telefono" name="TELEFONO">
+                <input type="text" id="telefono" name="TELEFONO" size="15">
             </div>
+            <button id="prueba-button" type="button">probando </button>
         </form>
         <script lang="javascript" src="../JavaScript/agregarPedido/agregar-pedido.js"></script>
         <script lang="javascript" src="../JavaScript/agregarPedido/Regiones-comunas.js"></script>
