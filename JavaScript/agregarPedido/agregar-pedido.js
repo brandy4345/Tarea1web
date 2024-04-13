@@ -1,12 +1,12 @@
 // ------ FUNCIONES ---------
 const isChecked = () => { 
     if (radio_fruta.checked){
-        producto_fruta.style.display="block";
+        producto_fruta.style.display="flex";
         producto_verdura.style.display="none";
     }
     else if (radio_verdura.checked){
         producto_fruta.style.display="none";
-        producto_verdura.style.display="block";
+        producto_verdura.style.display="flex";
         console.log("verdura esta checked");
     }
 }

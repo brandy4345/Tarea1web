@@ -1,6 +1,68 @@
-#checkbox-producto-fruta{
+
+*{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Inter", sans-serif;
+}
+
+
+section{
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 1%;
+    gap: 20px;
+}
+
+.tile{
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+
+input[type="checkbox"]{
     display: none;
 }
+
+.tile label{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    padding-top: 10%;
+    justify-content:px;
+    height:100%;
+    cursor:pointer;
+    border:2px solid black;
+    background: #fff;
+    box-shadow:0px 5px 20px 2px rgba(0,0,0,0.1);
+    text-align:center;
+    transition:all 200ms ease-in-out;
+    border-radius:5px;
+    color: #717070;
+}
+
+.fruta_icon{
+    position: absolute;   
+    width: 50%;
+    margin:auto;
+    left: 0 ;
+    right:0;
+    top:1.7rem;
+    bottom: 0;
+    cursor: pointer;
+}
+
+
+.container input[type="checkbox"]:checked + label {
+    background:  #bdaa97;
+    color: #403f3f;
+  }
+
+
+
 #checkbox-producto-verdura{
     display: none;
 }
