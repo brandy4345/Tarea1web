@@ -55,6 +55,9 @@ const validateCheckbox = (valor) => {
         return false;
     } 
 }
+const validateDescripcion = (descripcion) =>{
+    return descripcion && descripcion.value.length<=500
+} 
 const validateFotos = (fotos) => {
     if(fotos.length>=1 && fotos.length<=3){
         return true;
@@ -63,7 +66,7 @@ const validateFotos = (fotos) => {
         return false;
     }
 }
-const validateLenght = (descripcion) => descripcion && descripcion.length>=3 && descripcion.length<=300;
+const validateLenght = (descripcion) => descripcion && descripcion.length>=3 && descripcion.length<=80;
 
 const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -84,6 +87,7 @@ const validate = () => {
     const error_checkbox_verdura = document.getElementById("error-checkbox-verdura");
     const error_fotos = document.getElementById("error-foto");
     const error_telefono = document.getElementById("error-telefono");
+    const error_descripcion = document.getElementById("error-descripcion");
 
     // Recuperar lo que va a ser testeado :)
     const valor = document.querySelector('input[name="Tipo-fruta-o-verdura"]:checked');
@@ -95,6 +99,7 @@ const validate = () => {
 
     const radioISValid = validateRadioButton(valor);
     const checkboxIsValid = validateCheckbox(valor);
+    const descIsValid = validateDescripcion(descTextArea);
     const fotosIsValid = validateFotos(fotos);
     const nombreIsValid = validateLenght(nombreProductor.value);
     const emailIsValid = validateEmail(email.value);
@@ -106,7 +111,6 @@ const validate = () => {
         error_tipo.style.display="none";
     }
     if (radioISValid && !checkboxIsValid){
-        console.log(valor.value);
         if(valor.value == "FRUTA"){
             error_checkbox_fruta.style.display="block";
         }
@@ -116,6 +120,12 @@ const validate = () => {
     } else {
         error_checkbox_fruta.style.display="none";
         error_checkbox_verdura.style.display="none";
+    }
+    console.log(descIsValid)
+    if (!descIsValid){
+        error_descripcion.style.display = "block";
+    } else {
+        error_descripcion.style.display = "none";
     }
     if (!fotosIsValid){
         error_fotos.style.display="block";
