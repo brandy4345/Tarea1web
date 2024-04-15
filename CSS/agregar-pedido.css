@@ -42,6 +42,7 @@ input[type="checkbox"]{
     transition:all 200ms ease-in-out;
     border-radius:5px;
     color: #717070;
+    user-select: none;
 }
 
 .fruta_icon{
@@ -61,12 +62,14 @@ input[type="checkbox"]{
     color: #403f3f;
   }
 
-
-
-#checkbox-producto-verdura{
+#esconder-fruta{
+    display: none;
+}
+#esconder-verdura{
     display: none;
 }
 
 .error{
     color: red;
+    display: none;
 }
