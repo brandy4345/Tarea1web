@@ -7,3 +7,8 @@
 https://gist.github.com/juanbrujo/0fd2f4d126b3ce5a95a7dd1f28b3d8dd por el json de regiones y comunas
 https://gist.github.com/jaimeguaman/5819511 por el regex del numero de telefono
 https://www.flaticon.es/iconos-gratis/ por los iconos gratis
+https://www.pexels.com/es-es/foto/3-superficie-de-madera-marron-zuchini-128420/ foto de un pepino
+https://www.pexels.com/es-es/foto/comida-rojo-apple-manzana-10000847/ foto de manzanas
+https://www.pexels.com/es-es/foto/ligero-curva-curvar-textura-7129172/ foto de apios
+https://www.pexels.com/es-es/foto/frutos-de-platano-amarillo-sobre-superficie-marron-5966630/ foto de platanos
+https://www.pexels.com/es-es/foto/sandia-en-rodajas-sobre-plato-de-ceramica-blanca-5946081/ foto de sandias

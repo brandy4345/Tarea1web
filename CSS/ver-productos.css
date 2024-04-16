@@ -1,0 +1,14 @@
+table {
+    border-collapse: collapse;
+    width: 75%;
+}
+td {
+    cursor: pointer;
+}
+td, th {
+    border: 1px solid gray;
+    align-items: center;
+    text-align: left;
+    padding: 8px;
+    
+}
