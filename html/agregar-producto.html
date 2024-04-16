@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Agregar producto</title>
-        <link rel="stylesheet" href="..\CSS\agregar-pedido.css">
+        <link rel="stylesheet" href="..\CSS\agregar-producto.css">
     </head>
     <body>
         <a href="index.html">Inicio</a>
@@ -401,12 +401,11 @@
             <div id="foto-del-producto">
                 <input id="foto" type="file" multiple>
             </div>
-            <p id="error-region" class ="error">Seleccione su region.</p>
+            <p id="error-region" class ="error">Seleccione region y comuna.</p>
             <div id="region">
                 <select id="regiones">
                 </select>
             </div>
-            <p id="error-comuna" class ="error">Seleccione su comuna.</p>
             <div id="comuna">
                 <select id ="comunas">  </select>
             </div>
@@ -426,7 +425,24 @@
                 <label for="telefono"> Número de teléfono: </label>
                 <input type="text" id="telefono" name="TELEFONO" size="15" >
             </div>
-            <button id="submit-button" type="button">agregar producto</button>
+            <button id="myBtn" type="button">Agregar pedido</button>
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+
+                  <p> ¿Confirma el registro de este producto?</p>
+                  <button id="submit-button" type="button">Si, confirmo</button>
+                  <button id="cancel-button" type="button">No, quiero volver al formulario </button>
+                </div>
+                          
+              </div>
+            <div id="myModal2" class="modal">
+                <div class="modal-content">
+                    <p> Hemos recibido su pedido. Muchas gracias</p>
+                    <p> Volver al inicio: <a href="index.html">Inicio</a> </p>
+                </div> 
+            </div>
         </form>
         <script lang="javascript" src="../JavaScript/agregarPedido/agregar-pedido.js"></script>
         <script lang="javascript" src="../JavaScript/agregarPedido/Regiones-comunas.js"></script>
