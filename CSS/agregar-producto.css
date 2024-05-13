@@ -2,6 +2,7 @@
 *{
     padding:0px;
     margin:0px;
+    background-color: #edffd8;
     box-sizing: border-box;
 }
 body{
@@ -46,6 +47,7 @@ input[type="checkbox"]{
 }
 
 .fruta_icon{
+    background-color: white;
     position: absolute;   
     width: 50%;
     margin:auto;
@@ -73,6 +75,19 @@ input[type="checkbox"]{
     color: red;
     display: none;
 }
+
+#tipo-producto{
+    text-align: center;
+    font-size: 1.5rem;
+}
+#radio-buttons {
+    display: flex;
+    margin:2rem;
+}
+.radio {
+    margin-right: auto;
+}
+
  /* The Modal (background) */
  .modal {
     display: none; /* Hidden by default */
@@ -95,3 +110,17 @@ input[type="checkbox"]{
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
   }
+.navbar h1 {
+    margin-right: auto;
+}
+.navbar {
+    display: flex;
+    border-bottom: 2px solid black;
+    margin: 1em;
+}
+.navbar a {
+    color: black;
+    text-decoration: none;
+    margin: 1em;
+    cursor: pointer;
+}

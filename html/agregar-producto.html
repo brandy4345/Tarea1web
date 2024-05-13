@@ -6,15 +6,25 @@
         <link rel="stylesheet" href="..\CSS\agregar-producto.css">
     </head>
     <body>
-        <a href="index.html">Inicio</a>
+        <nav>
+            <div class="navbar">
+                <h1>Feria online</h1>
+                <a class="navbar-page" href="index.html">Inicio</a>
+                <a class="navbar-page">Sobre Nosotros</a>
+                <a class="navbar-page">Contactos</a>
+            </div>
+        </nav>
+        
         <form autocomplete="off">
             <p id="error-tipo" class ="error">Seleccione un tipo de producto:</p>
             <div id="Tipo-fruta-o-verdura">
-                <p>Tipo de producto:</p>
-                <input type="radio" id="fruta" name="Tipo-fruta-o-verdura" value="FRUTA">
-                <label for="fruta">Fruta</label>           
-                <input type="radio" id="verdura" name="Tipo-fruta-o-verdura" value="VERDURA">
-                <label for="verdura">Verdura</label>                   
+                <p id="tipo-producto">Tipo de producto:</p>
+                <div id="radio-buttons">
+                    <input class="radio" type="radio" id="fruta" name="Tipo-fruta-o-verdura" value="FRUTA">
+                    <label  for="fruta">Fruta</label>           
+                    <input class="radio" type="radio" id="verdura" name="Tipo-fruta-o-verdura" value="VERDURA">
+                    <label for="verdura">Verdura</label>
+                </div>                   
             </div>
             <p id="error-checkbox-fruta" class ="error">Seleccione alguna fruta.</p>
             <div class="container">

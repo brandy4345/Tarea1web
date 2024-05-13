@@ -2,6 +2,7 @@
 *{
     padding:0px;
     margin:0px;
+    background-color: #edffd8;
     box-sizing: border-box;
 }
 body{
@@ -95,3 +96,17 @@ input[type="checkbox"]{
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
   }
+  .navbar h1 {
+    margin-right: auto;
+}
+.navbar {
+    display: flex;
+    border-bottom: 2px solid black;
+    margin: 1em;
+}
+.navbar a {
+    color: black;
+    text-decoration: none;
+    margin: 1em;
+    cursor: pointer;
+}
