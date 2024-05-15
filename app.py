@@ -1,5 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
-
+from utils.validations import validate_forms
+from utils import validations
+from database import db
 
 app = Flask(__name__)
 
@@ -52,6 +54,7 @@ def postProducto():
     
     tipo_fruta_o_verdura = request.form.get("Tipo-fruta-o-verdura")
     productos_fruta = request.form.getlist("fruta")
+    productos_verdura = request.form.getlist("verdura")
     descripcion = request.form.get("descripcion-producto")
     foto = request.form.get("foto")
     region = request.form.get("region")
@@ -59,5 +62,23 @@ def postProducto():
     nombre = request.form.get("nombre")
     email = request.form.get("email")
     telefono = request.form.get("telefono")
-    print(productos_fruta)
+
+    if validate_forms(tipo_fruta_o_verdura,
+                      productos_fruta,
+                      productos_verdura,
+                      descripcion,
+                      foto,
+                      region,
+                      comuna,
+                      nombre,
+                      email,
+                      telefono):
+        print("esta correctito")
+    else:
+        print(validations.validate_tipo(tipo_fruta_o_verdura))
+        print(validations.validate_producto(productos_fruta,productos_verdura,tipo_fruta_o_verdura))
+        print(validations.validate_description(descripcion))
+        print(validations.validate_img(foto))
+        print(validations.validate_region_comuna(region,comuna))
+
     return "hola"
