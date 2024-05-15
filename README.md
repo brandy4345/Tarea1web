@@ -1,4 +1,12 @@
-# Tarea1web
+# (Tarea2)
+* En index.html se cambió el nombre de "Agregar pedido" a "Hacer pedido" con el fin de evitar confusiones. En templates sigue con el mismo nombre solo es para el uso de index.html.
+ 
+
+
+
+
+
+# (Tarea1) 
 
 * En agregar producto para las imágenes se decidió hacer un un input tipo file y que tiene propiedad de multiple, solo en esta tarea se va a usar esa propiedad, ya que para la tarea 2 donde va a existir backend, se va a cambiar de la manera que usa ucursos para recibir archivos.
 

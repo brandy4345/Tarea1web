@@ -1,0 +1,156 @@
+{%extends 'base.html' %}
+
+{%block title%}
+Informacion pedido
+{%endblock%}
+
+{%block links%}
+<a class="navbar-page" href="{{ url_for('index') }}">Inicio</a>
+<a class="navbar-page">Sobre Nosotros</a>
+<a class="navbar-page">Contactos</a>
+{%endblock%}
+
+{%block css%}
+<link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/informacion-pedido.css') }}"
+    />
+{%endblock%}
+
+{%block content%}
+
+<div>
+    <a name="pedido1"></a>
+    <h1 class="titulo-pedido">Pedido 1</h1>
+    <ul>
+        <li>Tipo producto: Fruta </li>
+        <li>Producto: Durazno</li>
+        <li>Descripcion: </li>
+        <li>Región: Tarapacá</li>
+        <li>Comuna: Alto Hospicio </li>
+        <li>Nombre: Martín Valenzuela</li>
+        <li>Email: Martin.Valenzuela@gmail.com</li>
+        <li>Teléfono: +56987654321</li>
+    </ul>    
+</div>
+<div>
+    <a name="pedido2"></a>
+    <h1 class="titulo-pedido">Pedido 2</h1>
+    <ul>
+        <li>Tipo producto: Fruta </li>
+        <li>Producto: Manzana</li>
+        <li>Descripcion: 
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Cras egestas erat ultricies nunc ornare pharetra. 
+                Phasellus elementum hendrerit ligula, id faucibus elit scelerisque eu. 
+                Integer blandit lacus vitae nibh lobortis congue. Aenean sed quam magna. 
+                Donec gravida, diam eu ultrices mattis, erat massa congue lacus, sed vehicula 
+                nulla leo vel urna. Nullam gravida, lectus quis molestie varius, tortor nunc 
+                luctus nisl, et faucibus metus sem vel nunc. Donec vestibulum aliquet tellus a 
+                maximus. Fusce vitae suscipit velit. Cras purus justo, eleifend a tincidunt vel, 
+                tincidunt non lacus. Orci varius natoque penatibus et magnis dis parturient montes, 
+                nascetur ridiculus mus. Sed placerat nec quam ac convallis. Aliquam dictum orci a leo 
+                consectetur condimentum. Phasellus elementum condimentum venenatis. 
+                Nunc convallis elit sit amet lorem auctor porttitor. Quisque sit amet urna a mauris 
+                fringilla congue quis ultrices metus. 
+            </p>
+        </li>
+        <li>Región: Región del Biobío</li>
+        <li>Comuna: Florida</li>
+        <li>Nombre: Valentina Contreras</li>
+        <li>Email: Valentina.Contreras@gmail.com</li>
+        <li>Teléfono: +56901234567</li>
+    </ul>    
+</div>
+<div>
+    <a name="pedido3"></a>
+    <h1 class="titulo-pedido">Pedido 3</h1>
+    <ul>
+        <li>Tipo producto: Fruta </li>
+        <li>Producto: Sandia</li>
+        <li>Descripcion: 
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Cras egestas erat ultricies nunc ornare pharetra. 
+                Phasellus elementum hendrerit ligula, id faucibus elit scelerisque eu. 
+                Integer blandit lacus vitae nibh lobortis congue. Aenean sed quam magna. 
+                Donec gravida, diam eu ultrices mattis, erat massa congue lacus, sed vehicula 
+                nulla leo vel urna. Nullam gravida, lectus quis molestie varius, tortor nunc 
+                luctus nisl, et faucibus metus sem vel nunc. Donec vestibulum aliquet tellus a 
+                maximus. Fusce vitae suscipit velit. Cras purus justo, eleifend a tincidunt vel, 
+                tincidunt non lacus. Orci varius natoque penatibus et magnis dis parturient montes, 
+                nascetur ridiculus mus. Sed placerat nec quam ac convallis. Aliquam dictum orci a leo 
+                consectetur condimentum. Phasellus elementum condimentum venenatis. 
+                Nunc convallis elit sit amet lorem auctor porttitor. Quisque sit amet urna a mauris 
+                fringilla congue quis ultrices metus. 
+            </p>
+        </li>
+        <li>Región: Región del Maule</li>
+        <li>Comuna: Constitución</li>
+        <li>Nombre: Diego Fernández </li>
+        <li>Email: Diego.Fernandez@gmail.com</li>
+        <li>Teléfono: +56923456789</li>
+    </ul>    
+</div>
+<div>
+    <a name="pedido4"></a>
+    <h1 class="titulo-pedido">Pedido 4</h1>
+    <ul>
+        <li>Tipo producto: Fruta </li>
+        <li>Producto: Platano</li>
+        <li>Descripcion: 
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Cras egestas erat ultricies nunc ornare pharetra. 
+                Phasellus elementum hendrerit ligula, id faucibus elit scelerisque eu. 
+                Integer blandit lacus vitae nibh lobortis congue. Aenean sed quam magna. 
+                Donec gravida, diam eu ultrices mattis, erat massa congue lacus, sed vehicula 
+                nulla leo vel urna. Nullam gravida, lectus quis molestie varius, tortor nunc 
+                luctus nisl, et faucibus metus sem vel nunc. Donec vestibulum aliquet tellus a 
+                maximus. Fusce vitae suscipit velit. Cras purus justo, eleifend a tincidunt vel, 
+                tincidunt non lacus. Orci varius natoque penatibus et magnis dis parturient montes, 
+                nascetur ridiculus mus. Sed placerat nec quam ac convallis. Aliquam dictum orci a leo 
+                consectetur condimentum. Phasellus elementum condimentum venenatis. 
+                Nunc convallis elit sit amet lorem auctor porttitor. Quisque sit amet urna a mauris 
+                fringilla congue quis ultrices metus. 
+            </p>
+        </li>
+        <li>Región: Antofagasta</li>
+        <li>Comuna: Ollagüe</li>
+        <li>Nombre: Isidora Muñoz</li>
+        <li>Email: Isidora.Munoz@gmail.com</li>
+        <li>Teléfono: +56998765432</li>
+    </ul>    
+</div>
+<div>
+    <a name="pedido5"></a>
+    <h1 class="titulo-pedido">Pedido 5</h1>
+    <ul>
+        <li>Tipo producto: Fruta</li>
+        <li>Producto: Mora</li>
+        <li>Descripcion: 
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Cras egestas erat ultricies nunc ornare pharetra. 
+                Phasellus elementum hendrerit ligula, id faucibus elit scelerisque eu. 
+                Integer blandit lacus vitae nibh lobortis congue. Aenean sed quam magna. 
+                Donec gravida, diam eu ultrices mattis, erat massa congue lacus, sed vehicula 
+                nulla leo vel urna. Nullam gravida, lectus quis molestie varius, tortor nunc 
+                luctus nisl, et faucibus metus sem vel nunc. Donec vestibulum aliquet tellus a 
+                maximus. Fusce vitae suscipit velit. Cras purus justo, eleifend a tincidunt vel, 
+                tincidunt non lacus. Orci varius natoque penatibus et magnis dis parturient montes, 
+                nascetur ridiculus mus. Sed placerat nec quam ac convallis. Aliquam dictum orci a leo 
+                consectetur condimentum. Phasellus elementum condimentum venenatis. 
+                Nunc convallis elit sit amet lorem auctor porttitor. Quisque sit amet urna a mauris 
+                fringilla congue quis ultrices metus. 
+            </p>
+        </li>
+        <li>Región: Coquimbo</li>
+        <li>Comuna: Coquimbo</li>
+        <li>Nombre: Mateo González</li>
+        <li>Email: Mateo.Gonzalez@gmail.com</li>
+        <li>Teléfono: +56987651234</li>
+    </ul>    
+</div>
+{%endblock content%}

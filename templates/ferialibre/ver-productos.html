@@ -1,0 +1,130 @@
+{%extends 'base.html' %}
+
+{%block title%}
+Ver productos
+{%endblock%}
+
+{%block links%}
+<a class="navbar-page" href="{{ url_for('index') }}">Inicio</a>
+<a class="navbar-page">Sobre Nosotros</a>
+<a class="navbar-page">Contactos</a>
+{%endblock%}
+
+{%block css%}
+<link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/ver-productos.css') }}"
+/>
+{%endblock%}
+
+{%block content%}
+<div id="container">
+    <table>
+        <tr>
+            <th>Tipo</th>
+            <th>Producto(s)</th>
+            <th>Región</th>
+            <th>Comuna</th>
+            <th>Fotos</th>
+        </tr>
+        <tr id="fila1">
+            <td>
+                Verdura
+            </td>
+            <td>
+                Pepino
+            </td>
+            <td>
+                Región del Libertador Gral. Bernardo O’Higgins
+            </td>
+            <td>
+                Las Cabras
+            </td>
+            <td>
+                <a href="{{url_for('informacionProducto')}}#pepino"></a>
+                <img class="Foto-Tabla" src="../imagenes/pepinochica.png" alt="foto pepino">
+            </td>
+        </tr>
+        <tr id="fila2">
+            <td>
+                Fruta
+            </td>
+            <td>
+                Manzana
+            </td>
+            <td>
+                Región del Libertador Gral. Bernardo O’Higgins
+            </td>
+            <td>
+                Navidad
+            </td>
+            <td>
+                <a href="{{url_for('informacionProducto')}}#manzana"></a>
+                <img class="Foto-Tabla" src="../imagenes/manzanachica.png" alt="foto manzana">
+            </td>
+        </tr>
+        <tr id="fila3">
+            <td>
+                Verdura
+            </td>
+            <td>
+                Apio
+            </td>
+            <td>
+                Valparaíso
+            </td>
+            <td>
+                Valparaíso
+            </td>
+            <td>
+                <a href="{{url_for('informacionProducto')}}#apio"></a>
+                <img class="Foto-Tabla" src="../imagenes/apiochica.png" alt="foto apio">
+            </td>
+        </tr>
+        <tr id="fila4">
+            <td>
+                Fruta
+            </td>
+            <td>
+                Platano
+            </td>
+            <td>
+                Región Metropolitana de Santiago
+            </td>
+            
+            <td>
+                
+                <p>Quinta Normal</p>
+                
+            </td>
+            <td>
+                <a href="{{url_for('informacionProducto')}}#platano"></a>
+                <img class="Foto-Tabla" src="../imagenes/platanochica.png" alt="foto platano">
+                
+            </td>
+        </tr>
+        <tr id="fila5">
+            <td>
+                Fruta
+            </td>
+            <td>
+                Sandia
+            </td>
+            <td>
+                Región Metropolitana de Santiago
+            </td>
+            <td>
+                Lampa
+            </td>
+            <td>
+                <a href="{{url_for('informacionProducto')}}#sandia"></a>
+                <img class="Foto-Tabla" src="../imagenes/sandiachica.png" alt="foto sandia">
+            </td>
+        </tr>
+    </table>
+</div>
+{%endblock content%}
+
+{%block javascript%}
+<script lang="javascript" src="{{ url_for('static', filename='js/ver-productos.js') }}"></script>
+{%endblock%}

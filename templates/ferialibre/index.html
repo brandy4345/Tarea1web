@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{%block title %}
+Menu principal
+{%endblock%}
+
+{%block links%}
+<a class="navbar-page" href="{{ url_for('agregarPedido')}}">Hacer pedido</a>
+<a class="navbar-page" href="{{ url_for('agregarProducto')}}">Agregar producto</a>
+<a class="navbar-page" href="{{ url_for('informacionPedido')}}">Informacion de pedidos</a>
+<a class="navbar-page" href="{{ url_for('informacionProducto')}}">Informacion de productos</a>
+<a class="navbar-page" href="{{ url_for('verPedidos')}}">Ver pedidos</a>
+<a class="navbar-page" href="{{ url_for('verProductos')}}">Ver productos</a>
+{%endblock%}
+
+
+

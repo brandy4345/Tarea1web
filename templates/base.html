@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head> 
+        <meta charset="UTF-8">
+        <title> {% block title %}{% endblock %} </title>
+        {% block css %}{% endblock %}
+        <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+        />
+    </head>
+    <body>
+        <nav>
+            <div class="navbar">
+                <h1>Feria online</h1>
+                {% block links %} {%endblock%}              
+            </div>
+        </nav>
+    </body>
+    <section>
+        {% block content%} {% endblock %}
+        {% block javascript %} {%endblock%}
+    </section>
+</html>
