@@ -51,6 +51,13 @@ def verProductos():
 def postProducto():
     
     tipo_fruta_o_verdura = request.form.get("Tipo-fruta-o-verdura")
-    #aca irian las opciones elegidas
+    productos_fruta = request.form.getlist("fruta")
     descripcion = request.form.get("descripcion-producto")
     foto = request.form.get("foto")
+    region = request.form.get("region")
+    comuna = request.form.get("comuna")
+    nombre = request.form.get("nombre")
+    email = request.form.get("email")
+    telefono = request.form.get("telefono")
+    print(productos_fruta)
+    return "hola"
