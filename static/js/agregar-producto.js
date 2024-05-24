@@ -56,7 +56,7 @@ const validateCheckbox = (valor) => {
     } 
 }
 const validateDescripcion = (descripcion) =>{
-    return descripcion && descripcion.value.length<=500
+    return descripcion && descripcion.value.length<=300
 } 
 const validateFotos = (fotos) => {
     if(fotos.length>=1 && fotos.length<=3){
@@ -78,7 +78,7 @@ const validateLenght = (descripcion) => descripcion && descripcion.length>=3 && 
 
 const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return emailRegex.test(email) && email.length<=30;
   };
 const validateTelefono = (numero) => {
     const telefonoRegex = /^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/;
@@ -197,6 +197,7 @@ fruta_o_verdura.addEventListener("change",isChecked);
 
 btn.onclick = function() {
     const verificacion = validate();
+    console.log("hola")
     if (verificacion){
         modal1.style.display = "block";
     }
@@ -209,7 +210,8 @@ buttonSubmit.onclick = function() {
     //segunda verificacion por si modifican la primera
     if (verificacion2){
         modal1.style.display="none";
-        modal2.style.display="block"
+        const form = document.querySelector("form")
+        form.submit()
     } else {
         modal1.style.display = "none"
     }

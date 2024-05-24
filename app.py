@@ -1,9 +1,15 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, make_response,render_template, redirect, url_for, jsonify
 from utils.validations import validate_forms
 from utils import validations
 from database import db
+from werkzeug.utils import secure_filename
+import hashlib
+import os
+import filetype
+from PIL import Image
 
 app = Flask(__name__)
+
 
 UPLOAD_FOLDER = 'static/uploads'
 
@@ -26,9 +32,26 @@ def index():
 def agregarPedido():
     return render_template("ferialibre/agregar-pedido.html")
 
-@app.route("/agregar-producto")
+@app.route("/agregar-producto", methods= ['GET'])
 def agregarProducto():
     return render_template("ferialibre/agregar-producto.html")
+
+@app.route("/region-comunas", methods = ['GET'])
+def ajaxRegionComunas():
+    regiones = db.get_regiones()
+    comunas = db.get_comunas()
+    data = {}
+    for id, nombre in regiones:
+        data[id] = {
+            "nombre" : nombre,
+            "comunas" : []
+        }
+    for id_comuna, nombre, id_region in comunas:
+        data[id_region]["comunas"].append({
+            "id": id_comuna,
+            "nombre": nombre
+        })
+    return jsonify(data)
 
 
 @app.route("/informacion-pedido")
@@ -42,6 +65,22 @@ def informacionProducto():
 
 @app.route("/ver-pedidos")
 def verPedidos():
+    data = []
+    for pedidos in db.get_pedidos(page_size=5):
+        tipo = pedidos[1]
+        comuna = db.get_comuna_by_comunaId(pedidos[2])[0]
+        region = db.get_region_by_comunaId(pedidos[2])
+        foto = db.get_foto_by_id(pedidos[0])
+
+        nombre_foto = f"{foto[1]}/{foto[2]}_120x120"
+        for producto in db.get_productos_by_id(pedidos[0]):
+            data.append({
+                "tipo":tipo,
+                "producto": producto,
+                "region":region,
+                "comuna":comuna,
+                "path_foto": url_for('static',filename = nombre_foto) 
+            })
     return render_template("ferialibre/ver-pedidos.html")
 
 @app.route("/ver-productos")
@@ -56,7 +95,7 @@ def postProducto():
     productos_fruta = request.form.getlist("fruta")
     productos_verdura = request.form.getlist("verdura")
     descripcion = request.form.get("descripcion-producto")
-    foto = request.form.get("foto")
+    foto = request.files.get("foto")
     region = request.form.get("region")
     comuna = request.form.get("comuna")
     nombre = request.form.get("nombre")
@@ -73,12 +112,58 @@ def postProducto():
                       nombre,
                       email,
                       telefono):
-        print("esta correctito")
-    else:
-        print(validations.validate_tipo(tipo_fruta_o_verdura))
-        print(validations.validate_producto(productos_fruta,productos_verdura,tipo_fruta_o_verdura))
-        print(validations.validate_description(descripcion))
-        print(validations.validate_img(foto))
-        print(validations.validate_region_comuna(region,comuna))
 
-    return "hola"
+      #save the product
+        
+        if (int(tipo_fruta_o_verdura)==0):
+            db.create_producto("fruta",descripcion, comuna, nombre, email, telefono)
+            ultimo_id = db.get_last_id ()
+            db.create_producto_verdura_fruta(ultimo_id[0],productos_fruta)
+        else:
+            db.create_producto("verdura",descripcion, comuna, nombre, email, telefono)
+            ultimo_id = db.get_last_id ()
+            db.create_producto_verdura_fruta(ultimo_id[0],productos_verdura)
+        
+        nombre_carpeta = f"producto{ultimo_id[0]}"
+        ruta_carpeta = os.path.join(app.config["UPLOAD_FOLDER"], nombre_carpeta)
+        os.makedirs(ruta_carpeta, exist_ok=True)
+
+        _filename = hashlib.sha256(
+            secure_filename(foto.filename) # nombre del archivo
+            .encode("utf-8") # encodear a bytes
+            ).hexdigest()
+        _extension = filetype.guess(foto).extension
+        img_filename = f"{_filename}.{_extension}"
+
+
+        foto.save(os.path.join(ruta_carpeta,img_filename))
+
+        sizes = [(120, 120), (640, 480),(1280,1024)]
+
+
+        for size in sizes:
+            with Image.open(foto) as img:
+                foto_copia = img.resize (size)
+                nombre_foto = f"{_filename}_{size[0]}x{size[1]}.{_extension}"
+                foto_copia.save(os.path.join(ruta_carpeta,nombre_foto))
+        db.create_foto(ruta_carpeta, img_filename, ultimo_id)
+
+    else:
+        #print(validations.validate_tipo(tipo_fruta_o_verdura))
+        #print(validations.validate_producto(productos_fruta,productos_verdura,tipo_fruta_o_verdura))
+        #print(validations.validate_description(descripcion))
+
+        #print(validations.validate_img(foto))
+        #print(validations.validate_region_comuna(region,comuna))
+
+        #print(validations.validate_nombre(nombre))
+        #print(validations.validate_email(email))
+
+        #print(validations.validate_telefono(telefono))
+        
+        print(validations.validate_region(region))
+        print(validations.validate_comuna(region,comuna))
+        
+        
+
+    return index()

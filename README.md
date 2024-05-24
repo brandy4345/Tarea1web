@@ -1,6 +1,11 @@
+# (Tarea3)
+* Se arreglo el problema de region y comunas, muchas gracias a ajax (no habia visto esas clases), te amo mucho ajax my beloved
+
+
 # (Tarea2)
 * En index.html se cambió el nombre de "Agregar pedido" a "Hacer pedido" con el fin de evitar confusiones. En templates sigue con el mismo nombre solo es para el uso de index.html.
- 
+ * No supe como se puede poner la informacion de las comunas dinamicamente en la parte de comunas, es decir,
+ que cuando se selecciona una region se muestra las comunas respectivas y ya no alcanzo pipipi:(
 
 
 

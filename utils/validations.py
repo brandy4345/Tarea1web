@@ -1,6 +1,6 @@
 import filetype
 from database import db
-
+import re 
 
 def validate_tipo(tipo_fruta_o_verdura):
     try:
@@ -22,7 +22,7 @@ def validar_producto_id(productos, inicio, fin):
 
 
 def validar_lista (productos):
-    return type(productos)== list and len(list)>=1 and len(list)<=5 
+    return type(productos)== list and len(productos)>=1 and len(productos)<=5 
 
 
 def validate_producto(producto_fruta,producto_verdura,tipo_fruta_o_verdura):
@@ -36,26 +36,30 @@ def validate_producto(producto_fruta,producto_verdura,tipo_fruta_o_verdura):
         return False
 
 def validate_description(descripcion):
-    return type(descripcion)==str and len(descripcion)<=500 
+    return type(descripcion)==str and len(descripcion)<=300 
 
 def validate_img(img):
-    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
-    ALLOWED_MIMETYPES = {"image/jpeg", "image/png"}
+    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+    ALLOWED_MIMETYPES = {"image/jpeg", "image/png", "image/gif"}
 
     # check if a file was submitted
     if img is None:
+        
         return False
 
     # check if the browser submitted an empty file
     if img.filename == "":
+        
         return False
     
     # check file extension
     ftype_guess = filetype.guess(img)
     if ftype_guess.extension not in ALLOWED_EXTENSIONS:
+       
         return False
     # check mimetype
     if ftype_guess.mime not in ALLOWED_MIMETYPES:
+        
         return False
     return True
 
@@ -67,10 +71,13 @@ def validate_region(region):
         return False
 
 def validate_comuna(region, comuna):
-    regionId = db.get_regionid_by_comunaid(comuna)
-    if (regionId):
-        return regionId == region
-    else:
+    try:
+        num = int(comuna)
+        regionId_db = db.get_regionid_by_comunaid(num)
+        regionId = int(region)
+
+        return regionId_db[0] == regionId
+    except Exception:
         return False
 
 def validate_region_comuna(region,comuna):
@@ -80,13 +87,21 @@ def validate_region_comuna(region,comuna):
         return False
 
 def validate_nombre(nombre):
-    return True
+    return type(nombre) == str and len(nombre)>=3 and len(nombre)<=80
 
 def validate_email(email):
-    return True
+    regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
+    if (re.match(regex,email)):
+        return len(email) <=30
+    else:
+        return False
 
 def validate_telefono(telefono):
-    return True
+    regex = r'(\+?56)?\s?0?9\s?[98765432]\d{7}'
+    if (re.match(regex,telefono)):
+        return True
+    else:
+        return False
 
 def validate_forms(tipo_fruta_o_verdura,
                       productos_fruta,
