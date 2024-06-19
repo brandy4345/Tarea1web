@@ -26,7 +26,7 @@ const validateRadioButton= (valor) => {
 }
 const validateCheckbox = (valor) => {
     if(valor){
-        if (valor.value=="FRUTA"){
+        if (valor.value==0){
             let num = 0;
             for(let i = 0; i<producto_fruta.length;i++){
                 if(producto_fruta[i].checked){
@@ -38,7 +38,7 @@ const validateCheckbox = (valor) => {
             }
             return false
         }
-        else if (valor.value=="VERDURA"){
+        else if (valor.value==1){
             let num = 0;
             for(let i = 0; i<producto_verdura.length;i++){
                 if(producto_verdura[i].checked){
@@ -56,21 +56,30 @@ const validateCheckbox = (valor) => {
     } 
 }
 const validateDescripcion = (descripcion) =>{
-    return descripcion && descripcion.value.length<=500
+    return descripcion && descripcion.value.length<=300
 } 
-const validateRegionyComuna = (region, comuna) =>  {
-    if( region.value!="" && comuna.value!=""){
-        return true;
-    }
-    else {
-        return false;
-    }
+const validateRegion = (region) => {
+    return region.value!="" && region.value>=1 && region.value<=16 
 }
-const validateLenght = (descripcion) => descripcion && descripcion.length>=3 && descripcion.length<=80;
+const validateComuna = (region, comuna) =>{
+    if(comunasObj){
+        let coms = comunasObj[region.value].comunas 
+        for (let i = 0; i<=coms.length; i++){
+            if (coms[i].id == comuna.value){
+                return true
+            }
+        }
+    }
+    return false
+}
+const validateRegionyComuna = (region, comuna) =>  {
+    return validateRegion(region) && validateComuna(region,comuna)
+}
+const validateLenght = (descripcion) => descripcion!="" && descripcion.length>=3 && descripcion.length<=80;
 
 const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return emailRegex.test(email) && email.length<=30;
   };
 const validateTelefono = (numero) => {
     const telefonoRegex = /^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/;
@@ -192,7 +201,8 @@ buttonSubmit.onclick = function() {
     //segunda verificacion por si modifican la primera
     if (verificacion2){
         modal1.style.display="none";
-        modal2.style.display="block"
+        const form = document.querySelector("form")
+        form.submit()
     } else {
         modal1.style.display = "none"
     }

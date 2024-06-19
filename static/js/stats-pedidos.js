@@ -14,7 +14,7 @@ Highcharts.chart("container2",{
       ]
 });
 
-let fetchAJAX = (url) => {
+let fetchAJAX2 = (url) => {
     fetch(url)
         .then((response) =>{
             if(!response.ok){
@@ -44,4 +44,4 @@ let fetchAJAX = (url) => {
             );
         });
 }
-fetchAJAX('http://localhost:5000/get-pedido-data');
+fetchAJAX2('http://localhost:5000/get-pedido-data');

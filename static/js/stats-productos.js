@@ -14,7 +14,7 @@ Highcharts.chart("container1",{
       ]
 });
 
-let fetchAJAX = (url) => {
+let fetchAJAX1 = (url) => {
     fetch(url)
         .then((response) =>{
             if(!response.ok){
@@ -44,4 +44,4 @@ let fetchAJAX = (url) => {
             );
         });
 }
-fetchAJAX('http://localhost:5000/get-product-data');
+fetchAJAX1('http://localhost:5000/get-product-data');

@@ -103,7 +103,7 @@ def validate_telefono(telefono):
     else:
         return False
 
-def validate_forms(tipo_fruta_o_verdura,
+def validate_forms_producto(tipo_fruta_o_verdura,
                       productos_fruta,
                       productos_verdura,
                       descripcion,
@@ -115,4 +115,17 @@ def validate_forms(tipo_fruta_o_verdura,
                       telefono):
     return validate_tipo(tipo_fruta_o_verdura) and validate_producto(productos_fruta,productos_verdura, tipo_fruta_o_verdura) and \
         validate_description(descripcion) and validate_img(foto) and validate_region_comuna(region,comuna) \
+        and validate_nombre(nombre) and validate_email(email) and validate_telefono(telefono)
+
+def validate_forms_pedido(tipo_fruta_o_verdura,
+                      productos_fruta,
+                      productos_verdura,
+                      descripcion,
+                      region,
+                      comuna,
+                      nombre,
+                      email,
+                      telefono):
+    return validate_tipo(tipo_fruta_o_verdura) and validate_producto(productos_fruta,productos_verdura, tipo_fruta_o_verdura) and \
+        validate_description(descripcion) and validate_region_comuna(region,comuna) \
         and validate_nombre(nombre) and validate_email(email) and validate_telefono(telefono)

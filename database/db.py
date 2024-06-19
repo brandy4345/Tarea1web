@@ -43,12 +43,30 @@ def create_producto(tipo, descripcion, comuna_id,nombre_productor,email_producto
 									  celular_productor) VALUES (%s,%s,%s,%s,%s,%s);" 
 	, (tipo, descripcion, comuna_id,nombre_productor,email_productor,celular_productor))
 	conn.commit()
+def create_pedido(tipo, descripcion, comuna_id,nombre_comprador,email_comprador,celular_comprador):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("INSERT INTO pedido (tipo, \
+									  descripcion, \
+									  comuna_id, \
+									  nombre_comprador, \
+									  email_comprador, \
+									  celular_comprador) VALUES (%s,%s,%s,%s,%s,%s);" 
+	, (tipo, descripcion, comuna_id,nombre_comprador,email_comprador,celular_comprador))
+	conn.commit()
 
-def get_last_id (): 
+def get_last_id_from_producto (): 
 	conn = get_conn()
 	cursor = conn.cursor()
 	#No me funciono select LAST_INSERT_ID() 
 	cursor.execute("SELECT MAX(id) from producto")
+	id = cursor.fetchone()
+	return id
+def get_last_id_from_pedido (): 
+	conn = get_conn()
+	cursor = conn.cursor()
+	#No me funciono select LAST_INSERT_ID() 
+	cursor.execute("SELECT MAX(id) from pedido")
 	id = cursor.fetchone()
 	return id
 
@@ -56,9 +74,15 @@ def create_producto_verdura_fruta(id, productoLista):
 	conn = get_conn()
 	cursor = conn.cursor()
 	for producto in productoLista:
-		print(id, int(producto))
 		cursor.execute("insert into producto_verdura_fruta (producto_id, tipo_verdura_fruta_id) VALUES (%s,%s);",
 				 (id,int(producto)))
+	conn.commit()
+def create_pedido_verdura_fruta(id, pedidoLista):
+	conn = get_conn()
+	cursor = conn.cursor()
+	for pedido in pedidoLista:
+		cursor.execute("insert into pedido_verdura_fruta (tipo_verdura_fruta_id,pedido_id) VALUES (%s,%s);",
+				 (int(pedido),id))
 	conn.commit()
 
 def create_foto(ruta_archivo,nombre_archivo, producto_id):
@@ -152,5 +176,15 @@ def get_product_data():
 					from producto_verdura_fruta t1 \
 					INNER JOIN tipo_verdura_fruta t2 ON t1.tipo_verdura_fruta_id=t2.id\
 					group by tipo_verdura_fruta_id ; ")
+	data = cursor.fetchall()
+	return data
+
+def get_pedido_data():
+	conn = get_conn()
+	cursor = conn.cursor()	
+	cursor.execute("SELECT t2.nombre, COUNT(*) \
+					FROM pedido t1 \
+					INNER JOIN comuna t2 ON t1.comuna_id = t2.id \
+					GROUP BY t2.nombre;")
 	data = cursor.fetchall()
 	return data

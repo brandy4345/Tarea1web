@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response,render_template, redirect, url_for, jsonify
 from flask_cors import cross_origin
-from utils.validations import validate_forms
+from utils.validations import validate_forms_pedido, validate_forms_producto
 from utils import validations
 from database import db
 from werkzeug.utils import secure_filename
@@ -104,7 +104,7 @@ def postProducto():
     email = request.form.get("email")
     telefono = request.form.get("telefono")
 
-    if validate_forms(tipo_fruta_o_verdura,
+    if validate_forms_producto(tipo_fruta_o_verdura,
                       productos_fruta,
                       productos_verdura,
                       descripcion,
@@ -119,11 +119,11 @@ def postProducto():
         
         if (int(tipo_fruta_o_verdura)==0):
             db.create_producto("fruta",descripcion, comuna, nombre, email, telefono)
-            ultimo_id = db.get_last_id ()
+            ultimo_id = db.get_last_id_from_producto ()
             db.create_producto_verdura_fruta(ultimo_id[0],productos_fruta)
         else:
             db.create_producto("verdura",descripcion, comuna, nombre, email, telefono)
-            ultimo_id = db.get_last_id ()
+            ultimo_id = db.get_last_id_from_producto ()
             db.create_producto_verdura_fruta(ultimo_id[0],productos_verdura)
         
         nombre_carpeta = f"producto{ultimo_id[0]}"
@@ -185,3 +185,57 @@ def getProductData():
 def getPedidoData():
     pedidoData= db.get_pedido_data()
     return jsonify(pedidoData)
+
+@app.route("/post-pedido", methods = ["POST"])
+def postPedido():
+        
+    tipo_fruta_o_verdura = request.form.get("Tipo-fruta-o-verdura")
+    pedidos_fruta = request.form.getlist("fruta")
+    pedidos_verdura = request.form.getlist("verdura")
+    descripcion = request.form.get("descripcion-producto")
+    region = request.form.get("region")
+    comuna = request.form.get("comuna")
+    nombre = request.form.get("nombre")
+    email = request.form.get("email")
+    telefono = request.form.get("telefono")
+
+    if validate_forms_pedido(tipo_fruta_o_verdura,
+                      pedidos_fruta,
+                      pedidos_verdura,
+                      descripcion,
+                      region,
+                      comuna,
+                      nombre,
+                      email,
+                      telefono):
+
+      #save the product
+        
+        if (int(tipo_fruta_o_verdura)==0):
+            db.create_pedido("fruta",descripcion, comuna, nombre, email, telefono)
+            ultimo_id = db.get_last_id_from_pedido ()
+            db.create_pedido_verdura_fruta(ultimo_id[0],pedidos_fruta)
+        else:
+            db.create_pedido("verdura",descripcion, comuna, nombre, email, telefono)
+            ultimo_id = db.get_last_id_from_pedido ()
+            db.create_pedido_verdura_fruta(ultimo_id[0],pedidos_verdura)
+
+    else:
+        #print(validations.validate_tipo(tipo_fruta_o_verdura))
+        #print(validations.validate_producto(productos_fruta,productos_verdura,tipo_fruta_o_verdura))
+        #print(validations.validate_description(descripcion))
+
+
+        #print(validations.validate_region_comuna(region,comuna))
+
+        #print(validations.validate_nombre(nombre))
+        #print(validations.validate_email(email))
+
+        #print(validations.validate_telefono(telefono))
+        
+        print(validations.validate_region(region))
+        print(validations.validate_comuna(region,comuna))
+        
+        
+
+    return index()
