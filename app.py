@@ -1,4 +1,5 @@
 from flask import Flask, request, make_response,render_template, redirect, url_for, jsonify
+from flask_cors import cross_origin
 from utils.validations import validate_forms
 from utils import validations
 from database import db
@@ -32,11 +33,12 @@ def index():
 def agregarPedido():
     return render_template("ferialibre/agregar-pedido.html")
 
-@app.route("/agregar-producto", methods= ['GET'])
+@app.route("/agregar-producto")
 def agregarProducto():
     return render_template("ferialibre/agregar-producto.html")
 
 @app.route("/region-comunas", methods = ['GET'])
+@cross_origin(origin="localhost", supports_credentials=True)
 def ajaxRegionComunas():
     regiones = db.get_regiones()
     comunas = db.get_comunas()

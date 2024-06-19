@@ -26,7 +26,7 @@ const validateRadioButton= (valor) => {
 }
 const validateCheckbox = (valor) => {
     if(valor){
-        if (valor.value=="FRUTA"){
+        if (valor.value==0){
             let num = 0;
             for(let i = 0; i<producto_fruta.length;i++){
                 if(producto_fruta[i].checked){
@@ -38,7 +38,7 @@ const validateCheckbox = (valor) => {
             }
             return false
         }
-        else if (valor.value=="VERDURA"){
+        else if (valor.value==1){
             let num = 0;
             for(let i = 0; i<producto_verdura.length;i++){
                 if(producto_verdura[i].checked){
@@ -66,15 +66,24 @@ const validateFotos = (fotos) => {
         return false;
     }
 }
-const validateRegionyComuna = (region, comuna) =>  {
-    if( region.value!="" && comuna.value!=""){
-        return true;
-    }
-    else {
-        return false;
-    }
+const validateRegion = (region) => {
+    return region.value!="" && region.value>=1 && region.value<=16 
 }
-const validateLenght = (descripcion) => descripcion && descripcion.length>=3 && descripcion.length<=80;
+const validateComuna = (region, comuna) =>{
+    if(comunasObj){
+        let coms = comunasObj[region.value].comunas 
+        for (let i = 0; i<=coms.length; i++){
+            if (coms[i].id == comuna.value){
+                return true
+            }
+        }
+    }
+    return false
+}
+const validateRegionyComuna = (region, comuna) =>  {
+    return validateRegion(region) && validateComuna(region,comuna)
+}
+const validateLenght = (descripcion) => descripcion!="" && descripcion.length>=3 && descripcion.length<=80;
 
 const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -97,7 +106,7 @@ const validate = () => {
     const error_telefono = document.getElementById("error-telefono");
     const error_descripcion = document.getElementById("error-descripcion");
     const error_regioncomuna = document.getElementById("error-region");
-
+    
     // Recuperar lo que va a ser testeado :)
     const valor = document.querySelector('input[name="Tipo-fruta-o-verdura"]:checked');
     const descTextArea = document.getElementById("desc-producto");
@@ -133,7 +142,6 @@ const validate = () => {
         error_checkbox_fruta.style.display="none";
         error_checkbox_verdura.style.display="none";
     }
-    console.log(descIsValid)
     if (!descIsValid){
         error_descripcion.style.display = "block";
     } else {
@@ -165,6 +173,14 @@ const validate = () => {
     } else {
         error_telefono.style.display = "none";
     }
+    console.log(radioISValid)
+    console.log(checkboxIsValid)
+    console.log(descIsValid)
+    console.log(fotosIsValid)
+    console.log(regionComunaisValid)
+    console.log(nombreIsValid)
+    console.log(emailIsValid)
+    console.log(telefonoIsValid)
     return radioISValid && checkboxIsValid && descIsValid && fotosIsValid && regionComunaisValid &&
     nombreIsValid && emailIsValid && telefonoIsValid;
 }
@@ -196,9 +212,9 @@ const btnclose = document.getElementById("cancel-button");
 fruta_o_verdura.addEventListener("change",isChecked);
 
 btn.onclick = function() {
-    const verificacion = validate();
-    console.log("hola")
+    let verificacion = validate();
     if (verificacion){
+        console.log("despues")
         modal1.style.display = "block";
     }
 }

@@ -35,13 +35,14 @@ const actualizaComunas = () => {
         }
     }
     selectorComuna.append(predeterminado2);
-    for (const comuna of region.comunas){
-        const opcion = document.createElement("option");
-        opcion.value = comuna.id;
-        opcion.innerText = comuna.nombre;
-        selectorComuna.append(opcion);
+    if (region){
+        for (const comuna of region.comunas){
+            const opcion = document.createElement("option");
+            opcion.value = comuna.id;
+            opcion.innerText = comuna.nombre;
+            selectorComuna.append(opcion);
+        }
     }
-
 }
 
 let fetchAJAX = (url) => {
