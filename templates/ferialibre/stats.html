@@ -1,0 +1,39 @@
+{%extends 'base.html' %}
+
+{%block title%}
+Estadisticas
+{%endblock%}
+
+{%block links%}
+<a class="navbar-page" href="{{ url_for('index') }}">Inicio</a>
+<a class="navbar-page">Sobre Nosotros</a>
+<a class="navbar-page">Contactos</a>
+{%endblock%}
+
+{%block css%}
+<link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/stats.css') }}"
+/>
+{%endblock%}
+
+{% block content %}    
+<div class="stats-container">
+    <figure class="highcharts-figure">
+        <div id="container1">
+            
+        </div>
+    </figure>
+    <figure class="highcharts-figure">
+        <div id="container2">
+            
+        </div>
+    </figure>
+</div>
+{% endblock content %}
+
+{%block javascript%}
+<script lang="javascript" src="https://code.highcharts.com/highcharts.js"></script>
+<script lang="javascript" src="{{ url_for('static', filename='js/stats-productos.js') }}"></script>
+<script lang="javascript" src="{{ url_for('static', filename='js/stats-pedidos.js') }}"></script>
+{%endblock%}

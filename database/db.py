@@ -144,3 +144,13 @@ def get_productos_by_id(id):
 		temp = cursor.fetchone()
 		lista.append(temp[0])
 	return lista
+
+def get_product_data():
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("Select t2.nombre,COUNT(*) as cant \
+					from producto_verdura_fruta t1 \
+					INNER JOIN tipo_verdura_fruta t2 ON t1.tipo_verdura_fruta_id=t2.id\
+					group by tipo_verdura_fruta_id ; ")
+	data = cursor.fetchall()
+	return data

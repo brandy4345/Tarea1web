@@ -169,3 +169,19 @@ def postProducto():
         
 
     return index()
+
+@app.route("/stats", methods=["GET"])
+def stats():
+    return render_template("ferialibre/stats.html")
+
+@app.route("/get-product-data", methods = ['GET'])
+@cross_origin(origin="localhost", supports_credentials=True)
+def getProductData():
+    productData= db.get_product_data()
+    return jsonify(productData)
+
+@app.route("/get-pedido-data", methods = ['GET'])
+@cross_origin(origin="localhost", supports_credentials=True)
+def getPedidoData():
+    pedidoData= db.get_pedido_data()
+    return jsonify(pedidoData)
