@@ -134,6 +134,21 @@ def get_pedidos(page_size):
 	pedidos = cursor.fetchall()
 	return pedidos
 
+def get_productos(page):
+	conn = get_conn()
+	cursor = conn.cursor()
+	cursor.execute("select t1.tipo, GROUP_CONCAT(t5.nombre SEPARATOR ','), t3.nombre, t2.nombre, t6.ruta_archivo,t6.nombre_archivo\
+		from producto t1 \
+		INNER JOIN comuna t2 ON t1.comuna_id = t2.id\
+		INNER JOIN region t3 ON t2.region_id = t3.id\
+		INNER JOIN producto_verdura_fruta t4 ON t1.id = t4.producto_id\
+		INNER JOIN tipo_verdura_fruta t5 ON t4.tipo_verdura_fruta_id = t5.id\
+		INNER JOIN foto t6 ON t1.id = t6.producto_id\
+		GROUP BY t1.tipo, t3.nombre, t2.nombre,t6.ruta_archivo,t6.nombre_archivo \
+		LIMIT %s, 5;",(page*5,))
+	producto = cursor.fetchall()
+	return producto
+
 def get_comuna_by_comunaId(comunaId):
 	conn = get_conn()
 	cursor = conn.cursor()

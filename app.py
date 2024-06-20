@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response,render_template, redirect, url_for, jsonify
+from flask import Flask, request, make_response,render_template, redirect, url_for, jsonify,abort
 from flask_cors import cross_origin
 from utils.validations import validate_forms_pedido, validate_forms_producto
 from utils import validations
@@ -84,11 +84,27 @@ def verPedidos():
                 "path_foto": url_for('static',filename = nombre_foto) 
             })
     return render_template("ferialibre/ver-pedidos.html")
-
 @app.route("/ver-productos")
 def verProductos():
     return render_template("ferialibre/ver-productos.html")
-
+@app.route("/get-productos/<int:numero>", methods = ['GET'])
+@cross_origin(origin="localhost", supports_credentials=True)
+def getProductos(numero):
+    if numero < 0:
+        numero = 0
+    productos = db.get_productos(numero)
+    data = []
+    for i in range(len(productos)):
+        temp =[]
+        for j in range(4):
+            temp.append(productos[i][j])
+        filename = productos[i][5]
+        name, extension = os.path.splitext(filename)
+        name += "_120x120"
+        temp.append(productos[i][4]+"/"+name+extension)
+        data.append(temp)
+    print(temp)
+    return jsonify(data)
 
 @app.route("/post-producto", methods = ["POST"])
 def postProducto():
