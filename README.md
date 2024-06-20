@@ -1,5 +1,8 @@
 # (Tarea3)
 * Se arreglo el problema de region y comunas, muchas gracias a ajax (no habia visto esas clases), te amo mucho ajax my beloved
+* Faltó que en información pedido( y producto) se mostrará la informacion pedida desde la base de datos, sin embargo
+es muy sencillo bastaria un Query desde la base de datos pidiendo la informacion y que la ruta se pida un numero >=1 
+el cual será la id del pedido, una vez hecho esto tendriamos la información pedida que pasariamos a traves de un data=data al html el cual se encargará de mostrarlo al usuario. 
 
 
 # (Tarea2)

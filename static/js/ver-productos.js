@@ -7,6 +7,11 @@ for (let i = 1; i <= 5; i++) {
     });
   }
 const table = document.getElementById("tabla")
+const clearRow = () => {
+    for (i=1; i<table.rows.length;i++){
+        table.deleteRow(i)
+    }
+}
 const createRow= (info) => {
     const tipo = info[0]
     const producto = info[1]
@@ -59,6 +64,7 @@ let fetchAJAX = (url) => {
             return response.json();
         })
         .then((ajaxResponse) => {
+            clearRow();
             for (i=0; i< ajaxResponse.length ;i++) {
                 createRow(ajaxResponse[i])
             }

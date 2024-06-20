@@ -1,20 +1,33 @@
 let num  = 0;
-for (let i = 1; i <= 5; i++) {
-    const row = document.getElementById('fila'+i);
-    row.addEventListener("click", () => {
-        const link = row.querySelector("a").href
-        window.location.href = link;
-    });
-  }
+
+const clickOnRow = () => {
+    for (let i = 1; i <= 5; i++) {
+        const row = document.getElementById('fila'+i);
+
+        if (row!= null){
+            row.addEventListener("click", () => {
+                const link = row.querySelector("a").href
+                window.location.href = link;
+            });
+        }
+      }
+}
 const table = document.getElementById("tabla")
-const createRow= (info) => {
+const clearRow = () => {
+    for (i=1; i<table.rows.length;i++){
+        table.deleteRow(i)
+    }
+}
+const createRow= (info, i ) => {
     const tipo = info[0]
     const producto = info[1]
     const region = info[2]
     const comuna = info[3]
     const nombre = info[4]
+    const id = info[5]
 
     const row = document.createElement("tr");
+    row.id ='fila'+ i;
 
     const td1 = document.createElement("td");
     const p1 = document.createElement("p")
@@ -37,8 +50,11 @@ const createRow= (info) => {
     td4.appendChild(p4)
 
     const td5 = document.createElement("td");
+    const a = document.createElement("a");
+    a.href = "/informacion-pedido/" + id ;
     const p5 = document.createElement("p")
     p5.innerText = nombre
+    td5.appendChild(a); 
     td5.appendChild(p5)
 
     row.appendChild(td1);
@@ -58,9 +74,11 @@ let fetchAJAX = (url) => {
             return response.json();
         })
         .then((ajaxResponse) => {
+            clearRow();
             for (i=0; i< ajaxResponse.length ;i++) {
-                createRow(ajaxResponse[i])
+                createRow(ajaxResponse[i],i+1)
             }
+            clickOnRow();
 
         })
         .catch((error) => {
