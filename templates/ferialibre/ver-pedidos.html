@@ -19,7 +19,7 @@ Ver pedidos
 
 {%block content%}
 <div id="container">
-    <table> 
+    <table id= "tabla"> 
         <tr>
             <th>Tipo</th>
             <th>Producto(s)</th>
@@ -68,6 +68,10 @@ Ver pedidos
             <td><a href="{{ url_for('informacionPedido')}}#pedido5"></a>Mateo González</td>
         </tr>
     </table>
+</div>
+<div id="botones">
+    <button class="boton" type="button" id="anterior">Anterior</button>
+    <button class="boton" type="button" id="siguiente">Siguiente</button>
 </div>
 {%endblock%}
 

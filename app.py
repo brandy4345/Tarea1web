@@ -67,23 +67,16 @@ def informacionProducto():
 
 @app.route("/ver-pedidos")
 def verPedidos():
-    data = []
-    for pedidos in db.get_pedidos(page_size=5):
-        tipo = pedidos[1]
-        comuna = db.get_comuna_by_comunaId(pedidos[2])[0]
-        region = db.get_region_by_comunaId(pedidos[2])
-        foto = db.get_foto_by_id(pedidos[0])
-
-        nombre_foto = f"{foto[1]}/{foto[2]}_120x120"
-        for producto in db.get_productos_by_id(pedidos[0]):
-            data.append({
-                "tipo":tipo,
-                "producto": producto,
-                "region":region,
-                "comuna":comuna,
-                "path_foto": url_for('static',filename = nombre_foto) 
-            })
     return render_template("ferialibre/ver-pedidos.html")
+
+@app.route("/get-pedidos/<int:numero>", methods = ['GET'])
+@cross_origin(origin="localhost", supports_credentials=True)
+def getPedidos(numero):
+    if numero < 0:
+        numero = 0
+    pedidos = db.get_pedidos(numero)
+    return jsonify(pedidos)
+
 @app.route("/ver-productos")
 def verProductos():
     return render_template("ferialibre/ver-productos.html")
@@ -103,7 +96,6 @@ def getProductos(numero):
         name += "_120x120"
         temp.append(productos[i][4]+"/"+name+extension)
         data.append(temp)
-    print(temp)
     return jsonify(data)
 
 @app.route("/post-producto", methods = ["POST"])

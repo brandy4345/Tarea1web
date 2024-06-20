@@ -30,3 +30,11 @@ tr:hover{
     background-color: #e0d6c7;
     color: #1c1c1c;
 }
+#botones{
+    display:flex;
+    justify-content: center;
+}
+.boton {
+    margin: 2rem;
+    padding: 0.4rem;
+}

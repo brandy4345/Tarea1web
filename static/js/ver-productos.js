@@ -1,5 +1,4 @@
-num = 0
-let hola; 
+let num = 0
 for (let i = 1; i <= 5; i++) {
     const row = document.getElementById('fila'+i);
     row.addEventListener("click", () => {
@@ -14,7 +13,6 @@ const createRow= (info) => {
     const region = info[2]
     const comuna = info[3]
     const foto = info[4]
-    console.log(info)
 
     const row = document.createElement("tr");
 
@@ -62,7 +60,6 @@ let fetchAJAX = (url) => {
         })
         .then((ajaxResponse) => {
             for (i=0; i< ajaxResponse.length ;i++) {
-                hola = ajaxResponse
                 createRow(ajaxResponse[i])
             }
 
@@ -75,4 +72,29 @@ let fetchAJAX = (url) => {
         });
 }
 
-fetchAJAX('http://localhost:5000/get-productos/'+num);
+fetchAJAX('http://localhost:5000/get-productos/'+0);
+
+const anterior = document.getElementById("anterior");
+const siguiente =  document.getElementById("siguiente");
+
+const restarUno =() =>{
+    if (num<=0){
+        num = 0
+    }
+    else {
+        num--;
+        fetchAJAX('http://localhost:5000/get-productos/'+num);
+    }
+}
+const sumarUno =() =>{
+    if (num<0){
+        num = 0
+    }
+    else {
+        num++;
+        fetchAJAX('http://localhost:5000/get-productos/'+num);
+    }
+}
+
+anterior.addEventListener("click",restarUno)
+siguiente.addEventListener("click",sumarUno)
